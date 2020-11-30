@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/userDetailsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/userDetailsUserAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_regular"
+        tools:src="@drawable/ic_launcher_foreground"
+        tools:tint="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/userDetailsUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userDetailsUserAvatar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_regular"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        tools:text="username" />
+
+    <RelativeLayout
+        android:id="@+id/userDetailsReposTitleContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userDetailsUsername">
+
+        <TextView
+            android:id="@+id/userDetailsReposTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginEnd="@dimen/margin_regular"
+            android:textSize="14sp"
+            tools:text="Repositories (52)" />
+
+        <ProgressBar
+            android:id="@+id/userDetailsLoader"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/userDetailsReposTitle"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userDetailsRepoList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_below="@id/userDetailsReposTitleContainer"
+        app:layout_constraintTop_toBottomOf="@id/userDetailsUsername"
+        tools:listitem="@layout/layout_github_repo_item" />
+
+    <TextView
+        android:id="@+id/userDetailsRepoListEmptyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userDetailsReposTitleContainer"
+        android:layout_marginStart="@dimen/margin_regular"
+        android:layout_marginTop="@dimen/margin_big"
+        android:layout_marginEnd="@dimen/margin_regular"
+        android:gravity="center"
+        android:text="@string/empty_repo_list"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:text="No repos found"
+        tools:visibility="visible" />
+</RelativeLayout>
