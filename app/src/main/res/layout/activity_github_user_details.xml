@@ -6,32 +6,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/userDetailsUserAvatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_regular"
-        tools:src="@drawable/ic_launcher_foreground"
-        tools:tint="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/userDetailsUsername"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/userDetailsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userDetailsUserAvatar"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/margin_regular"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        tools:text="username" />
+        android:padding="@dimen/margin_regular">
+
+        <ImageView
+            android:id="@+id/userDetailsUserAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_foreground"
+            tools:tint="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/userDetailsUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userDetailsUserAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name Surname" />
+
+        <TextView
+            android:id="@+id/userDetailsUserUsername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:textColor="@color/midGrey"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userDetailsUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/userDetailsUserName"
+            tools:text="username" />
+
+        <TextView
+            android:id="@+id/userDetailsUserBio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userDetailsUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/userDetailsUserUsername"
+            tools:text="bio" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
         android:id="@+id/userDetailsReposTitleContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userDetailsUsername">
+        android:layout_below="@id/userDetailsContainer">
 
         <TextView
             android:id="@+id/userDetailsReposTitle"
@@ -54,9 +92,9 @@
         android:id="@+id/userDetailsRepoList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
         android:layout_below="@id/userDetailsReposTitleContainer"
-        app:layout_constraintTop_toBottomOf="@id/userDetailsUsername"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/userDetailsUserUsername"
         tools:listitem="@layout/layout_github_repo_item" />
 
     <TextView

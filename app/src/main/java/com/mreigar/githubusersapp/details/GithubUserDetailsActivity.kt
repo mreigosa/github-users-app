@@ -13,10 +13,9 @@ import com.mreigar.githubusers.presentation.model.GithubRepoViewEntity
 import com.mreigar.githubusers.presentation.model.GithubUserViewEntity
 import com.mreigar.githubusers.presentation.viewmodel.GithubUserDetailsViewModel
 import com.mreigar.githubusersapp.R
+import com.mreigar.githubusersapp.databinding.ActivityGithubUserDetailsBinding
 import com.mreigar.githubusersapp.gone
 import com.mreigar.githubusersapp.visible
-import kotlinx.android.synthetic.main.activity_github_user_details.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class GithubUserDetailsActivity : AppCompatActivity() {
@@ -31,16 +30,16 @@ class GithubUserDetailsActivity : AppCompatActivity() {
     }
 
     private val viewModel: GithubUserDetailsViewModel by viewModel()
-
     private val githubRepoAdapter: GithubRepoAdapter by lazy { GithubRepoAdapter() }
+    private lateinit var binding: ActivityGithubUserDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_github_user_details)
+        binding = ActivityGithubUserDetailsBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        userDetailsRepoList.apply {
+        binding.userDetailsRepoList.apply {
             adapter = githubRepoAdapter
             layoutManager = LinearLayoutManager(this@GithubUserDetailsActivity)
         }
@@ -67,34 +66,36 @@ class GithubUserDetailsActivity : AppCompatActivity() {
     }
 
     private fun showLoading() {
-        userDetailsLoader.visible()
+        binding.userDetailsLoader.visible()
     }
 
     private fun hideLoading() {
-        userDetailsLoader.gone()
+        binding.userDetailsLoader.gone()
     }
 
     private fun showUser(user: GithubUserViewEntity) {
-        userDetailsUsername.text = user.username
+        binding.userDetailsUserUsername.text = user.username
+        binding.userDetailsUserName.text = user.name
+        binding.userDetailsUserBio.text = user.bio
         Glide.with(this)
             .load(user.avatarUrl)
             .apply(RequestOptions().transform(RoundedCorners(20)))
-            .into(userDetailsUserAvatar)
+            .into(binding.userDetailsUserAvatar)
     }
 
     private fun showGithubRepos(githubRepos: List<GithubRepoViewEntity>) {
-        userDetailsReposTitle.text = getString(R.string.repos_list_header).format(githubRepos.size)
+        binding.userDetailsReposTitle.text = getString(R.string.repos_list_header).format(githubRepos.size)
         githubRepoAdapter.setRepos(githubRepos)
     }
 
     private fun showEmptyRepos() {
-        userDetailsReposTitle.text = getString(R.string.repos_list_header).format(0)
+        binding.userDetailsReposTitle.text = getString(R.string.repos_list_header).format(0)
         githubRepoAdapter.setRepos(listOf())
-        userDetailsRepoListEmptyText.visible()
+        binding.userDetailsRepoListEmptyText.visible()
     }
 
     private fun showError() {
-        Snackbar.make(searchUserLayout, R.string.error_title_something_went_wrong, Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.userDetailsLayout, R.string.error_title_something_went_wrong, Snackbar.LENGTH_LONG)
     }
 
     override fun onSupportNavigateUp(): Boolean {
