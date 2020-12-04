@@ -17,5 +17,7 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     testImplementation "org.koin:koin-test:$koin_version"
 
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.assertj:assertj-core:$assertj_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 }
