@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Github Users App</string>
+    <string name="hint_username">GitHub username</string>
+    <string name="button_search">Search</string>
+    <string name="empty_repo_list">The user doesn\'t have any repository yet.</string>
+    <string name="repos_list_header">Repositories (%s)</string>
+    <string name="error_title_something_went_wrong">Oops! Something went wrong</string>
 </resources>

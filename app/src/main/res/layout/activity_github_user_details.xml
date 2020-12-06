@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/userDetailsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/userDetailsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_regular">
+
+        <ImageView
+            android:id="@+id/userDetailsUserAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_foreground"
+            tools:tint="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/userDetailsUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userDetailsUserAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name Surname" />
+
+        <TextView
+            android:id="@+id/userDetailsUserUsername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:textColor="@color/midGrey"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userDetailsUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/userDetailsUserName"
+            tools:text="username" />
+
+        <TextView
+            android:id="@+id/userDetailsUserBio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userDetailsUserAvatar"
+            app:layout_constraintTop_toBottomOf="@id/userDetailsUserUsername"
+            tools:text="bio" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/userDetailsReposTitleContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userDetailsContainer">
+
+        <TextView
+            android:id="@+id/userDetailsReposTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginEnd="@dimen/margin_regular"
+            android:textSize="14sp"
+            tools:text="Repositories (52)" />
+
+        <ProgressBar
+            android:id="@+id/userDetailsLoader"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/userDetailsReposTitle"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userDetailsRepoList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userDetailsReposTitleContainer"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/userDetailsUserUsername"
+        tools:listitem="@layout/layout_github_repo_item" />
+
+    <TextView
+        android:id="@+id/userDetailsRepoListEmptyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userDetailsReposTitleContainer"
+        android:layout_marginStart="@dimen/margin_regular"
+        android:layout_marginTop="@dimen/margin_big"
+        android:layout_marginEnd="@dimen/margin_regular"
+        android:gravity="center"
+        android:text="@string/empty_repo_list"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:text="No repos found"
+        tools:visibility="visible" />
+</RelativeLayout>
